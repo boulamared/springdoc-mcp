@@ -1,0 +1,8 @@
+target/
+.idea/
+.agents/
+article-medium.md
+draft.md
+linkedin-post.md
+assets/
+skills-lock.json

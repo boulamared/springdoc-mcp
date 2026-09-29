@@ -1,0 +1,41 @@
+server:
+  port: 9090
+
+spring:
+  application:
+    name: spring-boot-springdoc-mcp
+  threads:
+    virtual:
+      enabled: true
+  ai:
+    mcp:
+      server:
+        protocol: sse
+        sse-endpoint: /sse
+        sse-message-endpoint: /mcp/message
+
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+    enabled: true
+  swagger-ui:
+    path: /swagger-ui.html
+    enabled: true
+  ai:
+    mcp:
+      enabled: true
+      dashboard-enabled: true
+      dashboard-path: /mcp-ui
+      mcp-endpoint: /mcp
+      guardrails:
+        # Mutating operations (POST, PUT, DELETE, PATCH) require human-in-the-loop approval by default
+        require-approval-for-mutating-tools: true
+        safe-methods: GET,HEAD,OPTIONS
+      audit:
+        # Masks sensitive/secret fields (tokens, passwords, api-keys) in traces
+        redact: true
+
+logging:
+  level:
+    org.springdoc.ai.mcp.audit: INFO
+    com.anirixya.expenses: DEBUG
